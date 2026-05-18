@@ -2,6 +2,7 @@ const header = document.querySelector("[data-header]");
 const nav = document.querySelector("[data-nav]");
 const navToggle = document.querySelector("[data-nav-toggle]");
 const revealTargets = document.querySelectorAll(".reveal");
+const menuSlider = document.querySelector("[data-menu-slider]");
 
 const updateHeader = () => {
   if (!header) return;
@@ -25,6 +26,24 @@ if (nav && navToggle) {
       navToggle.setAttribute("aria-label", "メニューを開く");
     });
   });
+}
+
+if (menuSlider) {
+  const menuTrack = menuSlider.querySelector(".menu-grid");
+  const prevButton = menuSlider.querySelector("[data-menu-prev]");
+  const nextButton = menuSlider.querySelector("[data-menu-next]");
+
+  const slideMenu = (direction) => {
+    const activeCard = menuTrack?.querySelector(".menu-card");
+    if (!menuTrack || !activeCard) return;
+
+    const gap = parseFloat(window.getComputedStyle(menuTrack).columnGap) || 0;
+    const slideWidth = activeCard.getBoundingClientRect().width + gap;
+    menuTrack.scrollBy({ left: slideWidth * direction, behavior: "smooth" });
+  };
+
+  prevButton?.addEventListener("click", () => slideMenu(-1));
+  nextButton?.addEventListener("click", () => slideMenu(1));
 }
 
 const observer = new IntersectionObserver(

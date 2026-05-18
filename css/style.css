@@ -418,6 +418,18 @@ main > section:not(.hero)::before {
   color: var(--muted);
 }
 
+.menu-detail-link {
+  margin-top: 18px;
+}
+
+.menu-slider {
+  position: relative;
+}
+
+.menu-slider-button {
+  display: none;
+}
+
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -504,18 +516,71 @@ main > section:not(.hero)::before {
   font-weight: 800;
 }
 
+.scene-section {
+  background:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.95), rgba(255, 244, 220, 0.9)),
+    url("../assets/images/interior-counter.jpg") center / cover;
+}
+
+.scene-section::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255, 253, 248, 0.98) 0%, rgba(255, 253, 248, 0.84) 48%, rgba(255, 246, 226, 0.66) 100%),
+    linear-gradient(180deg, transparent, rgba(90, 53, 33, 0.08));
+  content: "";
+}
+
+.scene-section .section-title {
+  padding: 0 0 18px 22px;
+  border-left: 5px solid var(--gold);
+}
+
 .scene-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
 }
 
 .scene-card {
+  position: relative;
   min-height: 180px;
-  padding: 24px;
-  background: var(--white);
-  border: 1px solid var(--line);
+  padding: 58px 24px 24px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(230, 222, 210, 0.82);
   border-radius: 8px;
+  box-shadow: 0 16px 34px rgba(90, 53, 33, 0.09);
+}
+
+.scene-card::before {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  width: 22px;
+  height: 22px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow:
+    30px 0 0 rgba(217, 154, 30, 0.35),
+    60px 0 0 rgba(198, 99, 43, 0.28);
+  content: "";
+}
+
+.scene-card::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 86px;
+  height: 86px;
+  background:
+    linear-gradient(135deg, transparent 50%, rgba(217, 154, 30, 0.13) 50%);
+  content: "";
+}
+
+.scene-card h3 {
+  margin-top: 0;
 }
 
 .gallery-track {
@@ -819,6 +884,59 @@ main > section:not(.hero)::before {
   .menu-grid,
   .scene-grid {
     grid-template-columns: 1fr;
+  }
+
+  .menu-slider {
+    margin-inline: -16px;
+    padding-inline: 16px;
+  }
+
+  .menu-slider .menu-grid {
+    display: flex;
+    gap: 16px;
+    margin-inline: -16px;
+    padding: 0 16px 4px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .menu-slider .menu-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .menu-slider .menu-card {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+  }
+
+  .menu-slider-button {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(230, 222, 210, 0.9);
+    border-radius: 50%;
+    color: var(--brown);
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 12px 28px rgba(45, 36, 31, 0.16);
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1;
+    transform: translateY(-50%);
+  }
+
+  .menu-slider-button-prev {
+    left: 2px;
+  }
+
+  .menu-slider-button-next {
+    right: 2px;
   }
 
   .gallery-track {
