@@ -13,18 +13,34 @@ updateHeader();
 window.addEventListener("scroll", updateHeader, { passive: true });
 
 if (nav && navToggle) {
+  const closeNav = () => {
+    nav.classList.remove("is-open");
+    navToggle.classList.remove("is-open");
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.setAttribute("aria-label", "メニューを開く");
+  };
+
   navToggle.addEventListener("click", () => {
     const isOpen = nav.classList.toggle("is-open");
+    navToggle.classList.toggle("is-open", isOpen);
     navToggle.setAttribute("aria-expanded", String(isOpen));
     navToggle.setAttribute("aria-label", isOpen ? "メニューを閉じる" : "メニューを開く");
   });
 
   nav.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
-      nav.classList.remove("is-open");
-      navToggle.setAttribute("aria-expanded", "false");
-      navToggle.setAttribute("aria-label", "メニューを開く");
+      closeNav();
     });
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!nav.classList.contains("is-open")) return;
+    if (nav.contains(event.target) || navToggle.contains(event.target)) return;
+    closeNav();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeNav();
   });
 }
 
