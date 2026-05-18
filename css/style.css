@@ -579,8 +579,27 @@ main > section:not(.hero)::before {
   content: "";
 }
 
+.scene-card-image {
+  position: absolute;
+  right: -4px;
+  bottom: 4px;
+  z-index: 0;
+  width: 62%;
+  max-height: 92%;
+  object-fit: contain;
+  opacity: 1;
+}
+
 .scene-card h3 {
+  position: relative;
+  z-index: 1;
   margin-top: 0;
+  margin-bottom: 0;
+}
+
+.scene-card p {
+  position: relative;
+  z-index: 1;
 }
 
 .gallery-track {
@@ -937,6 +956,17 @@ main > section:not(.hero)::before {
 
   .menu-slider-button-next {
     right: 2px;
+  }
+
+  .scene-card {
+    min-height: 210px;
+  }
+
+  .scene-card-image {
+    right: -8px;
+    bottom: 6px;
+    width: 68%;
+    max-height: 88%;
   }
 
   .gallery-track {
