@@ -579,17 +579,6 @@ main > section:not(.hero)::before {
   content: "";
 }
 
-.scene-card-image {
-  position: absolute;
-  right: -4px;
-  bottom: 4px;
-  z-index: 0;
-  width: 62%;
-  max-height: 92%;
-  object-fit: contain;
-  opacity: 1;
-}
-
 .scene-card h3 {
   position: relative;
   z-index: 1;
@@ -977,13 +966,6 @@ main > section:not(.hero)::before {
 
   .scene-card {
     min-height: 210px;
-  }
-
-  .scene-card-image {
-    right: -8px;
-    bottom: 6px;
-    width: 68%;
-    max-height: 88%;
   }
 
   .gallery-track {
